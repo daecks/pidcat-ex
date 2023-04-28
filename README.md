@@ -191,3 +191,20 @@ Include these lines in your `.bashrc`, `.zshrc` or `.bash_profile`.
  [2]: https://github.com/healthluck/hl
  [3]: http://developer.android.com/sdk/
  [4]: https://github.com/paoloantinori/hhighlighter
+
+To add support for parsing existing logcat files, add the following to your .bashrc:
+Note: This assumes you have replaced an existing `pidcat` installation with
+ `pidcat-ex` or renamed `pidcat-ex` to `pidcat`.
+
+```bash
+function pidcatf(){
+    if [ "$#" -eq 1 ]; then
+        cat $1 | pidcat --pipe=`tput cols`
+    elif [ "$#" -eq 2 ]; then
+        cat $1 | pidcat $2 --pipe=`tput cols`
+    else
+        echo "Usage: pidcatf <adb logcat file> <optional: package name>"
+    fi
+}
+```
+
