@@ -364,7 +364,7 @@ def output_line(line, keep_line_on_stdout = True):
         tee_pidcat_file.flush()
 
     if keep_line_on_stdout:
-        print(line)
+        print(line.encode('utf-8'))
         sys.stdout.flush()
         if tee_file is not None:
             tee_file.write(line)
